@@ -1,1 +1,30 @@
+version: 0.2
 
+phases:
+  build:
+    commands:
+      - |
+        set -eu
+
+        : "${S3_BUCKET:?Set S3_BUCKET in CodeBuild}"
+        : "${DEPLOY_REGION:?Set DEPLOY_REGION in CodeBuild}"
+        : "${CLOUDFRONT_DISTRIBUTION_ID:?Set CLOUDFRONT_DISTRIBUTION_ID in CodeBuild}"
+
+        PREFIX="${S3_PREFIX:-}"
+        PREFIX="${PREFIX#/}"
+        PREFIX="${PREFIX%/}"
+        DESTINATION="s3://${S3_BUCKET}/${PREFIX:+${PREFIX}/}"
+
+        echo "Preparing website files"
+        test -f index.html
+        mkdir -p dist
+        cp index.html checkin.html robots.txt dist/
+        cp -R assets customer admin-frontend dist/
+
+        echo "Uploading website"
+        aws s3 sync dist/ "$DESTINATION" --region "$DEPLOY_REGION"
+
+        echo "Refreshing CloudFront cache"
+        aws cloudfront create-invalidation \
+          --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" \
+          --paths "/*"
