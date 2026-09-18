@@ -1,34 +1,92 @@
-#  Event-Driven Serverless Pet Stay Booking Management System
+# PetStay Frontend Demo
+
+A responsive static front-end prototype for a pet boarding and stay management platform. The project includes a customer-facing booking experience, admin dashboard, booking management screens, and a demo check-in flow for presentation purposes.
 
 ## Overview
-This project is an event‑driven serverless application that manages a Pet Stay booking system on AWS. It uses fully managed services to ensure scalability, high availability and reduced operational overhead. The system allows users to interact through a chatbot and website, while backend logic is orchestrated through serverless functions and event‑based processing.
 
+This repository is designed to demonstrate the PetStay product experience visually and functionally in a browser without requiring any live backend services. It is suitable for portfolio presentation, UI prototyping, and frontend demos.
 
-## Architecture
-The application follows a three‑tier architecture consisting of web, application and database tiers. The web tier uses AWS Amplify to host the static website connected to a GitHub repository, automatically deploying changes on commit. The application tier includes Amazon API Gateway as the front door to backend APIs, AWS Lambda for business logic and AWS Step Functions to orchestrate the booking workflow. Amazon EventBridge publishes booking events to decouple components. Cognito User Pool secures admin logins and provides JWT tokens, while the Identity Pool grants temporary credentials for unauthenticated chatbot access. The database tier stores data in Amazon DynamoDB for high performance and scalability.
+## Key Features
 
+- Split landing page for Customer and Admin entry
+- Booking form for pet stay reservations
+- Booking confirmation screen with generated demo booking ID
+- Admin dashboard with sample analytics cards and guest table
+- Manage Bookings screen with static booking records
+- Check-in demo page
+- Fully static local front-end experience
 
-## Services Used
-- **AWS Amplify** – Hosts the static website and triggers automatic deployments from GitHub.
-- **Amazon Cognito** – User Pool provides authentication and JWT token generation. Identity Pool grants temporary credentials for the chatbot.
-- **Amazon Lex V2** – Handles chatbot interactions and booking flow inputs.
-- **Amazon API Gateway** – Serves as the secure front door to backend APIs.
-- **AWS Lambda** – Executes backend logic in stateless serverless functions.
-- **AWS Step Functions** – Orchestrates the step-by-step booking process and handles retries.
-- **Amazon EventBridge** – Publishes booking events to allow loosely‑coupled integrations.
-- **Amazon DynamoDB** – Stores booking data with high availability.
+## Tech Stack
 
-## Usage
-Users access the static website hosted by Amplify and interact with the chatbot powered by Lex V2. The chatbot collects booking details and invokes Lambda functions via API Gateway. Step Functions manages the booking flow while EventBridge emits events for other services to react. Booking information is stored in DynamoDB and users receive confirmation.
+- HTML5
+- CSS3
+- JavaScript
+- Bootstrap
+- Static front-end mockup
 
-**Login Credentials**
+## Project Structure
 
-- **Admin Username:** petstayteam@outlook.com  
-  **Password:** PetStay@987654321
+```text
+.
+├── index.html
+├── checkin.html
+├── admin-frontend/
+│   ├── admin_dashboard.html
+│   ├── manage_bookings.html
+│   ├── post-login.html
+├── customer/
+│   ├── AI-Booking.html
+│   ├── booking-success.html
+│   ├── new-booking.html
+├── assets/
+│   ├── css/
+│   ├── fonts/
+│   ├── images/
+│   └── js/
+├── robots.txt
+├── package.json
+├── gulpfile.js
+├── README.md
+└── .gitignore
+```
 
-- **Staff Username:** petstayteam@gmail.com  
-  **Password:** PetStay@987654321
+## Getting Started
 
+### 1. Clone the repository
 
-## Conclusion
-By leveraging managed AWS services, this serverless and event‑driven architecture eliminates server maintenance and provides automatic scalability, security and disaster recovery. The system demonstrates an efficient and modern approach to building cloud applications.
+```bash
+git clone <your-repository-url>
+cd <project-folder>
+```
+
+### 2. Run the site locally
+
+```bash
+python -m http.server 8000
+```
+
+### 3. Open in browser
+
+```text
+http://localhost:8000/
+```
+
+## Demo Flow
+
+1. Open the landing page.
+2. Click Customer to go to the booking form.
+3. Fill in the booking details and submit.
+4. View the booking success page.
+5. Use the admin pages to review the demo dashboard and manage bookings.
+
+## Notes
+
+This project is intentionally implemented as a static frontend demo. It does not include live authentication, database storage, or external cloud backend processing unless the project is later connected to a real backend.
+
+## License
+
+This project is intended for educational and demo use.
+
+## Credits
+
+Designed and Developed by Shivani Varu
