@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Booking | PetStay</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --primary: #0192cc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: Arial, sans-serif; background: var(--bg); color: var(--text);
+    }
+    .booking-wrapper {
+      max-width: 1024px; margin: 40px auto; padding: 0 20px;
+    }
+    .title-wrapper { text-align: center; margin-bottom: 24px; }
+    .title-wrapper h2 { margin: 0 0 8px; font-size: clamp(2rem, 3vw, 2.6rem); }
+    .title-wrapper p { margin: 0; color: var(--muted); }
+    .card-style {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 28px;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.04);
+    }
+    h5 { margin: 0 0 16px; font-size: 1.1rem; }
+    .row { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .col-md-4, .col-md-3, .col-md-6 { grid-column: span 12; }
+    @media (min-width: 768px) {
+      .col-md-4 { grid-column: span 4; }
+      .col-md-3 { grid-column: span 3; }
+      .col-md-6 { grid-column: span 6; }
+    }
+    .input-style-1, .select-style-1 { display: flex; flex-direction: column; gap: 8px; }
+    label { font-weight: 600; }
+    input, select {
+      width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px;
+      background: #fff; font-size: 1rem; color: var(--text);
+    }
+    .text-muted { color: var(--muted); font-size: 0.85rem; }
+    .main-btn {
+      background: var(--primary); color: #fff; border: 0; padding: 14px 30px; border-radius: 999px;
+      font-weight: 700; font-size: 1rem; cursor: default; opacity: 0.9;
+    }
+    .text-center { text-align: center; }
+    .mt-4 { margin-top: 24px; }
+    .mt-5 { margin-top: 32px; }
+    .mb-3 { margin-bottom: 16px; }
+    .sticky-book-btn { margin-top: 32px; }
+  </style>
+</head>
+<body>
+  <div class="booking-wrapper">
+    <main class="main-wrapper">
+      <section class="tab-components">
+        <div class="container">
+          <div class="title-wrapper text-center pt-4">
+            <h2>Book Your Pet With Us!</h2>
+            <p>A new pet stay reservation</p>
+          </div>
+
+          <div class="form-elements-wrapper mt-4">
+            <div class="card-style">
+              <form id="booking-form">
+                <h5 class="mb-3">Owner Information</h5>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="input-style-1">
+                      <label>Owner Name</label>
+                      <input id="owner-name" type="text" placeholder="Owner Name" value="Emma Ross" />
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-style-1">
+                      <label>Email Address</label>
+                      <input id="owner-email" type="email" placeholder="owner@example.com" value="emma@example.com" />
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-style-1">
+                      <label>Phone Number</label>
+                      <input id="owner-phone" type="tel" placeholder="+1 234 567 8900" value="+1 234 567 8900" />
+                    </div>
+                  </div>
+                </div>
+
+                <h5 class="mt-5 mb-3">Pet Information</h5>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-style-1">
+                      <label>Pet Photo</label>
+                      <input type="file" id="pet-photo" accept="image/*" />
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="input-style-1">
+                      <label>Pet Name</label>
+                      <input id="pet-name" type="text" placeholder="Pet Name" value="Buddy" />
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="select-style-1">
+                      <label>Pet Species</label>
+                      <select id="pet-species">
+                        <option selected>Dog</option>
+                        <option>Cat</option>
+                        <option>Bird</option>
+                        <option>Other</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="input-style-1">
+                      <label>Pet Breed</label>
+                      <input id="pet-breed" type="text" placeholder="Pet Breed" value="Labrador" />
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="input-style-1">
+                      <label>Pet Age (in years)</label>
+                      <input id="pet-age" type="number" value="2" min="0" />
+                    </div>
+                  </div>
+                </div>
+
+                <h5 class="mt-5 mb-3">Booking Details</h5>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="input-style-1">
+                      <label>Check-In Date</label>
+                      <input id="checkin-date" type="date" value="2026-10-01" />
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-style-1">
+                      <label>Check-Out Date</label>
+                      <input id="checkout-date" type="date" value="2026-10-05" />
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="select-style-1">
+                      <label>Time of Arrival</label>
+                      <select id="arrival-time">
+                        <option selected>10:00 AM</option>
+                        <option>12:00 PM</option>
+                        <option>2:00 PM</option>
+                        <option>4:00 PM</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-center mt-5 sticky-book-btn">
+                  <button type="submit" class="main-btn primary-btn btn-hover">Book Now</button>
+                </div>
+              </form>
+<script>
+  document.getElementById('booking-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const ownerName = document.getElementById('owner-name').value.trim() || 'Guest';
+    const petName = document.getElementById('pet-name').value.trim() || 'Pet';
+    const bookingId = `BK-${Date.now().toString().slice(-6)}`;
+
+    sessionStorage.setItem('BookingID', bookingId);
+    sessionStorage.setItem('OwnerName', ownerName);
+    sessionStorage.setItem('PetName', petName);
+
+    window.location.href = 'booking-success.html?bookingId=' + encodeURIComponent(bookingId);
+  });
+</script>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

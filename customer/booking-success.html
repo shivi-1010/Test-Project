@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Successful | PetStay</title>
+  <style>
+    body {
+      margin: 0; font-family: Arial, sans-serif; background: #f5f7fb; color: #111827;
+    }
+    .wrapper {
+      max-width: 760px; margin: 80px auto; padding: 30px 24px; background: #fff; border-radius: 18px;
+      border: 1px solid #e5e7eb; box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06); text-align: center;
+    }
+    h2 { margin: 0 0 10px; }
+    .muted { color: #6b7280; }
+    .card {
+      margin-top: 22px; padding: 24px; border: 1px solid #e5e7eb; border-radius: 16px; background: #f9fafb;
+    }
+    .qr-box {
+      width: 180px; height: 180px; margin: 18px auto; display: grid; place-items: center; border: 2px dashed #cbd5e1;
+      border-radius: 14px; font-weight: 700; color: #475569; background: #fff;
+    }
+    .alert {
+      margin-top: 22px; padding: 14px 18px; background: #ecfeff; color: #0f172a; border: 1px solid #a5f3fc; border-radius: 10px;
+      text-align: left;
+    }
+    .button {
+      display: inline-block; margin-top: 20px; padding: 12px 18px; background: #2563eb; color: #fff; border: 0; border-radius: 10px; text-decoration: none; font-weight: 700;
+    }
+    .meta {
+      margin-top: 12px; font-size: 0.95rem; color: #4b5563;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <h2 id="title">Thank you, Guest!</h2>
+    <p class="muted" id="subtitle">Your booking was received successfully.</p>
+
+    <div class="card">
+      <h3>Your Pet’s Photo</h3>
+      <div class="qr-box">QR Demo</div>
+      <p class="muted">Please present the QR code at the reception during check-in.</p>
+      <div class="meta" id="bookingMeta">Booking ID: --</div>
+    </div>
+
+    <div class="alert" id="statusText">Booking confirmed! Please bring your QR code for check-in.</div>
+    <a class="button" href="AI-Booking.html">Make Another Booking</a>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const bookingId = params.get('bookingId') || sessionStorage.getItem('BookingID') || 'BK-000000';
+    const ownerName = sessionStorage.getItem('OwnerName') || 'Guest';
+    const petName = sessionStorage.getItem('PetName') || 'Pet';
+
+    document.getElementById('title').textContent = `Thank you, ${ownerName}!`;
+    document.getElementById('subtitle').textContent = `${petName} is now on the waitlist for a stay.`;
+    document.getElementById('bookingMeta').textContent = `Booking ID: ${bookingId}`;
+  </script>
+</body>
+</html>
